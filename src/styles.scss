@@ -1,1 +1,87 @@
 /* You can add global styles to this file, and also import other style files */
+$mainColor: #8bc34a;
+$whiteColor: #fff;
+$grayColor: #f2f2f2;
+
+
+.centerize {
+  display: table;
+  height: 100%;
+  width: 100%;
+
+  .v-center {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+a {
+  color: $mainColor;
+  outline: 0;
+
+  &:hover, &:focus {
+    color: $mainColor;
+    text-decoration: underline;
+  }
+}
+.auth-page {
+  height: 100vh;
+  background-color: $mainColor;
+  color: $whiteColor;
+
+  .auth-box {
+    background-color: $whiteColor;
+    padding: 40px 20px;
+  }
+
+  .auth-header {
+    margin-bottom: 20px;
+
+    img {
+      margin: 0 auto;
+    }
+  }
+  .auth-box-footer {
+    p {
+      color: darken($grayColor, 45%);
+    }
+  }
+}
+.form-control {
+  background-color: $grayColor;
+  color: darken($grayColor, 45%);
+  border-radius: 0;
+  height: 40px;
+
+  &:focus {
+    border-color: darken($grayColor, 45%);
+    box-shadow: none;
+  }
+}
+.btn {
+  border-radius: 0;
+  padding: 10px 20px;
+  text-align: left;
+  position: relative;
+  border-color: transparent;
+  outline: 0;
+  transition: all 0.3s ease-in-out;
+
+  &:hover, &:focus {
+    border-color: transparent;
+    outline: 0;
+  }
+
+  img {
+    position: absolute;
+    right: 20px;
+  }
+
+  &.btn-primary {
+    background-color: $mainColor;
+    color: $whiteColor;
+
+    &:hover, &:focus {
+      background-color: lighten($mainColor, 10%);
+    }
+  }
+}

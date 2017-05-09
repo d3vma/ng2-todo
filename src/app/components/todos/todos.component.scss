@@ -1,0 +1,85 @@
+@import '../../../styles.scss';
+
+nav {
+  background-color: $mainColor;
+  border: none;
+  border-radius: 0;
+  min-height: 110px;
+
+  .navbar-nav {
+    & > li {
+      img {
+        max-width: 80px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 20px;
+      }
+
+      &.logout {
+        padding-left: 25px;
+
+        a {
+          color: $whiteColor;
+          margin-top: 35px;
+        }
+      }
+    }
+    .user-info {
+      .user-data {
+        display: inline-block;
+        vertical-align: middle;
+        color: $whiteColor;
+      }
+    }
+  }
+}
+
+.todos {
+  .todo-items {
+    background-color: $mainColor;
+    color: $whiteColor;
+
+    .todo-header {
+      border-bottom: 1px solid $whiteColor;
+      padding: 10px;
+
+      h3 {
+        display: inline-block;
+        margin: 0;
+        text-transform: uppercase;
+      }
+      .btn-add {
+        padding: 3px 10px;
+        background-color: $whiteColor;
+        color: $mainColor;
+        font-size: 16px;
+
+        &:hover, &:focus {
+          background-color: darken($whiteColor, 10%);
+        }
+      }
+    }
+
+    .todos-list {
+      padding: 10px;
+
+      ul {
+        padding: 0;
+
+        li {
+          list-style: none;
+          background-color: $whiteColor;
+          color: darken($grayColor, 60%);
+          padding: 10px;
+          margin-bottom: 5px;
+          display: block;
+
+          &.done {
+            background-color: darken($grayColor, 5%);
+            text-decoration: line-through;
+          }
+        }
+      }
+    }
+  }
+}

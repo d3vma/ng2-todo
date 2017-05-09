@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+        <img src="../../../assets/images/logo.png" class="img-responsive">
+      </a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="#">
+          <div class="user-info">
+            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/jina/128.jpg" class="img-responsive img-circle">
+            <div class="user-data">
+              <h3>{{user?.name}}</h3>
+              <p>{{user?.email}}</p>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="logout">
+        <a (click)="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section class="todos">
+  <div class="container">
+    <div *ngIf="loading" class="loader">
+      <i class="fa fa-spinner fa-spin fa-3x" aria-hidden="true"></i>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="todo-items">
+          <div class="todo-header">
+            <h3>todo items</h3>
+            <button class="btn btn-add pull-right">Add</button>
+          </div>
+          <div class="todos-list">
+            <ul>
+              <li *ngFor="let task of tasks">{{task?.title}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="todo-items">
+          <div class="todo-header">
+            <h3>done items</h3>
+          </div>
+          <div class="todos-list">
+            <ul>
+              <li class="done" *ngFor="let doneTask of doneTasks">{{doneTasks.title}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
