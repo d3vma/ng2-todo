@@ -42,7 +42,7 @@ export class TodosComponent implements OnInit {
 
     this.todosService.all().subscribe(
      res => {
-       this.tasks = res.tasks;
+       this.tasks = res;
        this.loading = false;
      },
      err => {
@@ -54,7 +54,7 @@ export class TodosComponent implements OnInit {
 
     this.todosService.doneTasks().subscribe(
      res => {
-       this.doneTasks = res.tasks;
+       this.doneTasks = res;
        this.loading = false;
      },
      err => {
