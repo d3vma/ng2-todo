@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { SharedService } from '../../services/shared.service';
 import { TodosService } from '../../services/todos.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-todos',
@@ -21,11 +22,14 @@ export class TodosComponent implements OnInit {
 
   public doneTasks = [];
 
+  public hideModal = false;
+
   constructor(
     private authService: AuthService,
     private sharedService: SharedService,
     private todosService: TodosService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -59,6 +63,25 @@ export class TodosComponent implements OnInit {
        this.loading = false;
      }
     );
+  }
+
+  addTask(f) {
+
+    this.hideModal = true;
+
+    this.todosService.addTask(f.value)
+      .subscribe(
+        data => {
+          this.alertService.success('Task added successfully', true);
+          this.router.navigate(['/']);
+          console.log('Task Added Successfully');
+          this.hideModal = false;
+        },
+        error => {
+          this.alertService.error(error);
+          console.log('Task adding error', error);
+        }
+       );
   }
 
   logout() {

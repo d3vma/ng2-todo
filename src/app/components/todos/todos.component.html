@@ -34,7 +34,7 @@
         <div class="todo-items">
           <div class="todo-header">
             <h3>todo items</h3>
-            <button class="btn btn-add pull-right">Add</button>
+            <button class="btn btn-add pull-right" data-toggle="modal" data-target="#myModal">Add</button>
           </div>
           <div class="todos-list">
             <ul>
@@ -58,3 +58,26 @@
     </div>
   </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" [hidden]="hideModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form name="form" #f="ngForm" (ngSubmit)="addTask(f) && f.form.valid" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
+            <input class="form-control" type="text" name="title" [(ngModel)]="title" placeholder="Title">
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-danger btn-block text-center">Close</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block text-center" (click)='addTask(f)' data-dismiss="modal">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

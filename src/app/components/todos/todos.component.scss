@@ -83,3 +83,22 @@ nav {
     }
   }
 }
+
+.modal {
+
+  .modal-dialog {
+    width: 450px;
+    margin: 130px auto;
+  }
+
+  .modal-content {
+    border-radius: 0;
+    background-color: $grayColor;
+  }
+
+  .form-control {
+    background-color: darken($grayColor, 10%);
+  }
+}
+
+
