@@ -38,7 +38,7 @@
           </div>
           <div class="todos-list">
             <ul>
-              <li *ngFor="let task of tasks">{{task?.title}}</li>
+              <li *ngFor="let task of tasks" (click)="updateTask(task)" [class.hidden]="task.deleting">{{task?.title}}</li>
             </ul>
           </div>
         </div>

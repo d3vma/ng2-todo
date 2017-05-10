@@ -4,12 +4,12 @@ nav {
   background-color: $mainColor;
   border: none;
   border-radius: 0;
-  min-height: 110px;
+  max-height: 90px;
 
   .navbar-nav {
     & > li {
       img {
-        max-width: 80px;
+        max-width: 60px;
         display: inline-block;
         vertical-align: middle;
         margin-right: 20px;
@@ -20,11 +20,26 @@ nav {
 
         a {
           color: $whiteColor;
-          margin-top: 35px;
+          margin-top: 40px;
+          cursor: pointer;
+
+          &:hover, &:focus {
+            text-decoration: underline;
+          }
         }
+      }
+
+      & > a {
+        padding: 0;
       }
     }
     .user-info {
+      padding: 13px;
+      border-right: 1px solid rgba(255, 255, 255, 0.27);
+
+      h3 {
+        margin: 0;
+      }
       .user-data {
         display: inline-block;
         vertical-align: middle;
@@ -32,9 +47,15 @@ nav {
       }
     }
   }
+  .navbar-brand > {
+    img {
+      max-width: 200px;
+    }
+  }
 }
 
 .todos {
+  position: relative;
   .todo-items {
     background-color: $mainColor;
     color: $whiteColor;
@@ -47,6 +68,8 @@ nav {
         display: inline-block;
         margin: 0;
         text-transform: uppercase;
+        font-size: 20px;
+        margin-bottom: 0;
       }
       .btn-add {
         padding: 3px 10px;
@@ -81,6 +104,17 @@ nav {
         }
       }
     }
+  }
+  .loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 999;
+    left: 0;
+    text-align: center;
+    color: #8bc34a;
+    padding-top: 100px;
   }
 }
 

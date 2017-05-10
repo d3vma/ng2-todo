@@ -28,7 +28,6 @@ export class SharedService {
   logout() {
     localStorage.removeItem("user");
     this.router.navigate(["/login"]);
-    console.log("logged out! see you soon bro^^");
   }
 
 }

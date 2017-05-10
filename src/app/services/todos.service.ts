@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, URLSearchParams, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import { environment as ENV } from '../../environments/environment';
 import { SharedService } from './shared.service';
 
 @Injectable()
 export class TodosService {
-
-  private apiUrl: string = "http://pilot.tqweem.com/api";
 
   constructor(
     private http: Http,
@@ -22,9 +21,9 @@ export class TodosService {
     });
 
     let params: URLSearchParams = new URLSearchParams();
-    params.set('api_key', 'c6fb4df3de49fa3081c9651127e01380');
+    params.set('api_key', ENV.api_key);
 
-    return this.http.get(this.apiUrl + '/task/todo', { search: params, headers: headers })
+    return this.http.get(ENV.api_url + '/task/todo', { search: params, headers: headers })
            .map(this.extractData).catch(this.handleError);
 
   }
@@ -37,31 +36,15 @@ export class TodosService {
     });
 
     let params: URLSearchParams = new URLSearchParams();
-    params.set('api_key', 'c6fb4df3de49fa3081c9651127e01380');
+    params.set('api_key', ENV.api_key);
 
-    return this.http.get(this.apiUrl + '/task/done', { search: params, headers: headers })
+    return this.http.get(ENV.api_url + '/task/done', { search: params, headers: headers })
            .map(this.extractData)
            .catch(this.handleError);
 
   }
 
-  // addTask(): Observable<any> {
-
-  //   let token = this.sharedService.token();
-  //   let headers = new Headers({
-  //     'Authorization': 'Bearer ' + token
-  //   });
-
-  //   let params: URLSearchParams = new URLSearchParams();
-  //   params.set('api_key', 'c6fb4df3de49fa3081c9651127e01380');
-
-  //   return this.http.post(this.apiUrl + '/task/create', { search: params, headers: headers })
-  //          .map(this.extractData)
-  //          .catch(this.handleError);
-
-  // }
-
-  addTask(user): Observable<any> {
+  addTask(task): Observable<any> {
 
     let token = this.sharedService.token();
     let headers = new Headers({
@@ -70,9 +53,25 @@ export class TodosService {
 
 
     let params: URLSearchParams = new URLSearchParams();
-    params.set('api_key', 'c6fb4df3de49fa3081c9651127e01380');
+    params.set('api_key', ENV.api_key);
 
-    return this.http.post(this.apiUrl + '/task/create', user, { search: params, headers: headers })
+    return this.http.post(ENV.api_url + '/task/create', task, { search: params, headers: headers })
+           .map(this.extractData)
+           .catch(this.handleError);
+  }
+
+  updateTask(taskId): Observable<any> {
+
+    let token = this.sharedService.token();
+    let headers = new Headers({
+      'Authorization': 'Bearer ' + token
+    });
+
+
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('api_key', ENV.api_key);
+
+    return this.http.put(ENV.api_url + '/task/' + taskId, null, { search: params, headers: headers })
            .map(this.extractData)
            .catch(this.handleError);
   }

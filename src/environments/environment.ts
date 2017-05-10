@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api_url: 'http://pilot.tqweem.com/api',
+  api_key: 'c6fb4df3de49fa3081c9651127e01380'
 };

@@ -6,6 +6,7 @@
           <img src="../../../assets/images/logo.png" class="img-responsive">
         </div>
         <div class="auth-box">
+          <div class="alert alert-danger" [hidden]="!error">Invalid Credentials</div>
           <form name="form" #f="ngForm" (ngSubmit)="login(f) && f.form.valid" novalidate>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
               <input class="form-control" type="text" name="email" [(ngModel)]="email" placeholder="Email" autofocus="">

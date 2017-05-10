@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, URLSearchParams, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { environment as ENV } from '../../environments/environment';
 import 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
-
-  private apiUrl: string = "http://pilot.tqweem.com/api";
 
   constructor(
     private http: Http,
@@ -20,18 +19,18 @@ export class AuthService {
 
   authenticateUser(user): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
-    params.set('api_key', 'c6fb4df3de49fa3081c9651127e01380');
+    params.set('api_key', ENV.api_key);
 
-    return this.http.post(this.apiUrl + '/login', user, { search: params })
+    return this.http.post(ENV.api_url + '/login', user, { search: params })
            .map(this.extractData)
            .catch(this.handleError);
   }
 
   registerUser(user): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
-    params.set('api_key', 'c6fb4df3de49fa3081c9651127e01380');
+    params.set('api_key', ENV.api_key);
 
-    return this.http.post(this.apiUrl + '/register', user, { search: params })
+    return this.http.post(ENV.api_url + '/register', user, { search: params })
            .map(this.extractData)
            .catch(this.handleError);
   }

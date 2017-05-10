@@ -35,9 +35,6 @@ export class TodosComponent implements OnInit {
   ngOnInit() {
 
     this.loading = true;
-
-    console.log(this.sharedService.token());
-
     this.user = this.sharedService.userProfile();
 
     this.todosService.all().subscribe(
@@ -47,7 +44,6 @@ export class TodosComponent implements OnInit {
      },
      err => {
        this.error = err;
-       console.log("ERR:", err);
        this.loading = false;
      }
     );
@@ -59,35 +55,41 @@ export class TodosComponent implements OnInit {
      },
      err => {
        this.error = err;
-       console.log("ERR:", err);
        this.loading = false;
      }
     );
   }
 
   addTask(f) {
-
     this.hideModal = true;
-
     this.todosService.addTask(f.value)
       .subscribe(
         data => {
-          this.alertService.success('Task added successfully', true);
           this.router.navigate(['/']);
-          console.log('Task Added Successfully');
           this.hideModal = false;
         },
         error => {
           this.alertService.error(error);
-          console.log('Task adding error', error);
         }
-       );
+      );
+  }
+
+  updateTask(task){
+    task.deleting = true;
+    this.doneTasks.push(task);
+
+    this.todosService.updateTask(task.id).subscribe(
+      data => this.tasks.splice(this.tasks.indexOf(task), 1),
+      err => {
+        task.deleting = false;
+        this.doneTasks.splice(this.doneTasks.indexOf(task), 1);
+      }
+    );
   }
 
   logout() {
     localStorage.removeItem("user");
     this.router.navigate(["/login"]);
-    console.log("logged out! see you soon bro^^");
   }
 
 }

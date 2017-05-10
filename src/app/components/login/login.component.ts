@@ -13,7 +13,9 @@ import { AlertService } from '../../services/alert.service';
 export class LoginComponent implements OnInit {
 
   public disabled = false;
-  public loading = false;
+
+
+  public error = false;
 
   constructor(
     private authService: AuthService,
@@ -22,25 +24,21 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
   }
 
   login(f) {
     this.disabled = true;
-    this.loading = true;
+    this.error = false;
     this.authService.authenticateUser(f.value)
       .subscribe(
         data => {
           let x = localStorage.setItem('user', JSON.stringify(data));
-          this.alertService.success('Registration successful', true);
           this.router.navigate(['/']);
-          console.log('Login Successfully');
         },
         error => {
           this.disabled = false;
-          this.loading = false;
           this.alertService.error(error);
-          console.log('Login error', error);
+          this.error = true;
         }
        );
   }
