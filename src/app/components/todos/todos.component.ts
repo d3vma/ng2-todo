@@ -67,6 +67,7 @@ export class TodosComponent implements OnInit {
         data => {
           this.router.navigate(['/']);
           this.hideModal = false;
+          f.reset();
         },
         error => {
           this.alertService.error(error);
